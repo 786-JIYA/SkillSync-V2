@@ -85,8 +85,119 @@ const getStudentSkills = async (req, res) => {
     }
 };
 
+
+const getMyProfile = async (req, res) => {
+    try {
+        const studentId = req.student.id;
+
+        const student = await studentService.getMyProfile(studentId);
+
+        return res.status(200).json({
+            success: true,
+            data: {
+                student
+            }
+        });
+    } catch (error) {
+        console.error("Get student profile error:", error);
+
+        return res.status(error.statusCode || 500).json({
+            success: false,
+            message: error.statusCode
+                ? error.message
+                : "Internal server error"
+        });
+    }
+};
+
+const updateMyProfile = async (req, res) => {
+    try {
+        const studentId = req.student.id;
+
+        const student = await studentService.updateMyProfile(
+            studentId,
+            req.body
+        );
+
+        return res.status(200).json({
+            success: true,
+            message: "Profile updated successfully",
+            data: { student }
+        });
+    } catch (error) {
+        console.error("Update student profile error:", error);
+
+        return res.status(error.statusCode || 500).json({
+            success: false,
+            message: error.statusCode
+                ? error.message
+                : "Internal server error"
+        });
+    }
+};
+
+const getStudentDirectory = async (req, res) => {
+    try {
+        const {
+            search,
+            department,
+            classYear,
+            page,
+            limit
+        } = req.query;
+
+        const result = await studentService.getStudentDirectory({
+            search,
+            department,
+            classYear,
+            page,
+            limit
+        });
+
+        return res.status(200).json({
+            success: true,
+            data: result
+        });
+    } catch (error) {
+        console.error("Get student directory error:", error);
+
+        return res.status(error.statusCode || 500).json({
+            success: false,
+            message: error.statusCode
+                ? error.message
+                : "Internal server error"
+        });
+    }
+};
+
+const getStudentProfile = async (req, res) => {
+    try {
+        const { studentId } = req.params;
+
+        const student = await studentService.getStudentProfile(studentId);
+
+        return res.status(200).json({
+            success: true,
+            data: { student }
+        });
+    } catch (error) {
+        console.error("Get public student profile error:", error);
+
+        return res.status(error.statusCode || 500).json({
+            success: false,
+            message: error.statusCode
+                ? error.message
+                : "Internal server error"
+        });
+    }
+};
+
 module.exports = {
     addStudentSkill,
     deleteStudentSkill,
-    getStudentSkills
+    getStudentSkills,
+    getMyProfile,
+    updateMyProfile,
+    getStudentDirectory,
+    getStudentProfile
 };
