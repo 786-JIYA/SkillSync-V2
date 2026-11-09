@@ -11,44 +11,93 @@ const adapter = new PrismaPg({
 const prisma = new PrismaClient({ adapter });
 
 const skills = [
-    // Programming
-    { name: "Java", category: "Programming" },
-    { name: "Python", category: "Programming" },
-    { name: "C", category: "Programming" },
-    { name: "C++", category: "Programming" },
-    { name: "JavaScript", category: "Programming" },
+    // Programming Languages
+    { name: "C", category: "Programming Languages" },
+    { name: "C++", category: "Programming Languages" },
+    { name: "Java", category: "Programming Languages" },
+    { name: "Python", category: "Programming Languages" },
+    { name: "JavaScript", category: "Programming Languages" },
+    { name: "TypeScript", category: "Programming Languages" },
+    { name: "C#", category: "Programming Languages" },
+    { name: "PHP", category: "Programming Languages" },
+    { name: "Go", category: "Programming Languages" },
+    { name: "Rust", category: "Programming Languages" },
+    { name: "Kotlin", category: "Programming Languages" },
 
-    // Web Development
-    { name: "HTML", category: "Web Development" },
-    { name: "CSS", category: "Web Development" },
-    { name: "React.js", category: "Web Development" },
-    { name: "Node.js", category: "Web Development" },
-    { name: "Express.js", category: "Web Development" },
+    // Frontend Development
+    { name: "HTML", category: "Frontend Development" },
+    { name: "CSS", category: "Frontend Development" },
+    { name: "React.js", category: "Frontend Development" },
+    { name: "Next.js", category: "Frontend Development" },
+    { name: "Angular", category: "Frontend Development" },
+    { name: "Vue.js", category: "Frontend Development" },
+    { name: "Tailwind CSS", category: "Frontend Development" },
+    { name: "Bootstrap", category: "Frontend Development" },
 
-    // Database
-    { name: "PostgreSQL", category: "Database" },
-    { name: "MySQL", category: "Database" },
-    { name: "MongoDB", category: "Database" },
+    // Backend Development
+    { name: "Node.js", category: "Backend Development" },
+    { name: "Express.js", category: "Backend Development" },
+    { name: "Spring Boot", category: "Backend Development" },
+    { name: "Django", category: "Backend Development" },
+    { name: "Flask", category: "Backend Development" },
+    { name: "REST API Development", category: "Backend Development" },
+    { name: "GraphQL", category: "Backend Development" },
 
-    // Computer Science
+    // Databases
+    { name: "PostgreSQL", category: "Databases" },
+    { name: "MySQL", category: "Databases" },
+    { name: "MongoDB", category: "Databases" },
+    { name: "Redis", category: "Databases" },
+    { name: "SQLite", category: "Databases" },
+    { name: "Database Design", category: "Databases" },
+
+    // Computer Science Fundamentals
     { name: "Data Structures", category: "Computer Science" },
     { name: "Algorithms", category: "Computer Science" },
     { name: "Object-Oriented Programming", category: "Computer Science" },
     { name: "DBMS", category: "Computer Science" },
+    { name: "Operating Systems", category: "Computer Science" },
+    { name: "Computer Networks", category: "Computer Science" },
+    { name: "Software Engineering", category: "Computer Science" },
 
-    // Tools
-    { name: "Git", category: "Tools" },
-    { name: "GitHub", category: "Tools" },
-    { name: "Docker", category: "Tools" },
+    // Tools and DevOps
+    { name: "Git", category: "Tools and DevOps" },
+    { name: "GitHub", category: "Tools and DevOps" },
+    { name: "Docker", category: "Tools and DevOps" },
+    { name: "Kubernetes", category: "Tools and DevOps" },
+    { name: "Linux", category: "Tools and DevOps" },
+    { name: "AWS", category: "Tools and DevOps" },
+    { name: "Postman", category: "Tools and DevOps" },
+    { name: "CI/CD", category: "Tools and DevOps" },
 
-    // AI & ML
-    { name: "Machine Learning", category: "AI & ML" },
-    { name: "Deep Learning", category: "AI & ML" },
-    { name: "TensorFlow", category: "AI & ML" },
+    // AI and Machine Learning
+    { name: "Machine Learning", category: "AI and Machine Learning" },
+    { name: "Deep Learning", category: "AI and Machine Learning" },
+    { name: "TensorFlow", category: "AI and Machine Learning" },
+    { name: "PyTorch", category: "AI and Machine Learning" },
+    { name: "Scikit-learn", category: "AI and Machine Learning" },
+    { name: "Pandas", category: "AI and Machine Learning" },
+    { name: "NumPy", category: "AI and Machine Learning" },
+    { name: "Natural Language Processing", category: "AI and Machine Learning" },
+
+    // Mobile Development
+    { name: "Android Development", category: "Mobile Development" },
+    { name: "Flutter", category: "Mobile Development" },
+    { name: "React Native", category: "Mobile Development" },
+
+    // Testing
+    { name: "Jest", category: "Testing" },
+    { name: "Selenium", category: "Testing" },
+    { name: "JUnit", category: "Testing" },
+    { name: "Unit Testing", category: "Testing" },
+
+    // UI/UX and Design
+    { name: "UI/UX Design", category: "Design" },
+    { name: "Figma", category: "Design" },
 ];
 
 async function main() {
-    console.log("Starting skill seeding...");
+    console.log("Starting SkillSync V2 skill seeding...");
 
     for (const skill of skills) {
         await prisma.skill.upsert({
