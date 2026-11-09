@@ -1,0 +1,20 @@
+node_modules/
+.env
+.env.*
+!.env.example
+
+# Generated Prisma client
+generated/
+
+# Logs
+*.log
+
+# Coverage
+coverage/
+
+# Local AI/editor tool configuration
+.agents/
+.claude/
+.windsurf/
+# Dependencies
+node_modules/
