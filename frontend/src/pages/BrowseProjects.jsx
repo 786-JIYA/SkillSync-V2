@@ -136,9 +136,15 @@ function BrowseProjects() {
                     <button onClick={() => navigate("/dashboard")}>
                         ◈ Overview
                     </button>
+
                     <button onClick={() => navigate("/skills")}>
                         ◇ My Skills
                     </button>
+
+                    <button onClick={() => navigate("/students")}>
+                        ♧ Student Directory
+                    </button>
+
                     <button className="active">
                         ▣ Projects
                     </button>
