@@ -23,6 +23,8 @@ import TeamInvitations from "./pages/TeamInvitations.jsx";
 import MyProfile from "./pages/MyProfile.jsx";
 
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import StudentDirectory from "./pages/StudentDirectory.jsx";
+import StudentProfile from "./pages/StudentProfile.jsx";
 
 import "./App.css";
 
@@ -77,6 +79,24 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <MyProfile />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/students"
+        element={
+          <ProtectedRoute>
+            <StudentDirectory />
+          </ProtectedRoute>
+        }
+      />
+
+      <Route
+        path="/students/:studentId"
+        element={
+          <ProtectedRoute>
+            <StudentProfile />
           </ProtectedRoute>
         }
       />

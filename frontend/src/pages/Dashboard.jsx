@@ -178,6 +178,21 @@ function Dashboard() {
 
                         <button
                             className="overview-card"
+                            onClick={() => navigate("/students")}
+                        >
+                            <div className="overview-icon skills-icon">♧</div>
+                            <div>
+                                <h3>Student Directory</h3>
+                                <p>
+                                    Discover students, explore their skills,
+                                    and find potential collaborators.
+                                </p>
+                            </div>
+                            <span className="card-arrow">→</span>
+                        </button>
+
+                        <button
+                            className="overview-card"
                             onClick={() => navigate("/my-activity")}
                         >
                             <div className="overview-icon profile-icon">✉</div>
@@ -214,6 +229,12 @@ function Dashboard() {
                             onClick={() => navigate("/profile")}
                         >
                             View Profile →
+                        </button>
+                        <button
+                            className="nav-item"
+                            onClick={() => navigate("/students")}
+                        >
+                            <span>♧</span> Student Directory
                         </button>
                     </div>
 

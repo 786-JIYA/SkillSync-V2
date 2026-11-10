@@ -206,3 +206,119 @@
         margin-left: 66px;
     }
 }
+
+
+/* Profile editing form */
+
+.profile-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-top: 25px;
+}
+
+.profile-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+}
+
+.profile-form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #26324a;
+}
+
+.profile-form-group input,
+.profile-form-group textarea {
+    width: 100%;
+    padding: 13px 15px;
+    border: 1px solid #dce1eb;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #26324a;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.profile-form-group input:focus,
+.profile-form-group textarea:focus {
+    border-color: #6658d3;
+    box-shadow: 0 0 0 3px rgba(102, 88, 211, 0.1);
+}
+
+.profile-form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.profile-form-group input::placeholder,
+.profile-form-group textarea::placeholder {
+    color: #a0a7b5;
+}
+
+.profile-form-group small {
+    align-self: flex-end;
+    color: #8b93a3;
+    font-size: 12px;
+}
+
+.profile-save-button {
+    align-self: flex-start;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    background: #6658d3;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.profile-save-button:hover {
+    background: #5143bd;
+}
+
+.profile-save-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+.profile-form-error {
+    color: #dc3545;
+    font-size: 14px;
+    margin: 0;
+}
+
+.profile-form-success {
+    color: #198754;
+    font-size: 14px;
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .profile-save-button {
+        width: 100%;
+    }
+
+    .profile-edit-form {
+        gap: 18px;
+    }
+}
+
+/* Prevent form fields from overflowing their containers */
+.profile-form-group input,
+.profile-form-group textarea {
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+/* Improve keyboard accessibility */
+.profile-save-button:focus-visible,
+.profile-skills-link:focus-visible {
+    outline: 3px solid rgba(102, 88, 211, 0.35);
+    outline-offset: 3px;
+}
