@@ -7,7 +7,7 @@ import "./StudentDirectory.css";
 
 function StudentDirectory() {
     const navigate = useNavigate();
-    const { token, student, logout } = useAuth();
+    const { token } = useAuth();
 
     const [students, setStudents] = useState([]);
     const [search, setSearch] = useState("");
@@ -89,44 +89,8 @@ function StudentDirectory() {
 
     return (
         <div className="directory-page">
-            <aside className="directory-sidebar">
-                <div className="directory-brand">
-                    <span className="brand-symbol">S</span>
-                    <span>SkillSync</span>
-                </div>
 
-                <nav className="directory-nav">
-                    <button onClick={() => navigate("/dashboard")}>
-                        Overview
-                    </button>
-
-                    <button onClick={() => navigate("/skills")}>
-                        My Skills
-                    </button>
-
-                    <button onClick={() => navigate("/projects")}>
-                        Projects
-                    </button>
-
-                    <button className="active">
-                        Student Directory
-                    </button>
-                </nav>
-
-                <div className="directory-sidebar-bottom">
-                    <strong>{student?.name || "Student"}</strong>
-                    <button onClick={logout}>Logout</button>
-                </div>
-            </aside>
-
-            <main className="directory-main">
-                <header className="directory-topbar">
-                    <span>Student Workspace / Directory</span>
-
-                    <div>
-                        {student?.name?.charAt(0) || "S"}
-                    </div>
-                </header>
+            <div className="directory-main">
 
                 <section className="directory-content">
                     <div className="directory-heading">
@@ -258,7 +222,7 @@ function StudentDirectory() {
                         </>
                     )}
                 </section>
-            </main>
+            </div>
         </div>
     );
 }

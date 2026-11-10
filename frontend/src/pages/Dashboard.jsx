@@ -1,285 +1,141 @@
-
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx";
-import { useNavigate } from "react-router-dom";
+import { Icon } from "../components/Icon.jsx";
+import { skillService } from "../services/skillService";
+import { invitationService } from "../services/invitationService";
+import { joinRequestService } from "../services/joinRequestService";
+import { projectService } from "../services/projectService";
 import "./Dashboard.css";
 
+// Works whether the API returns { data: [...] } or { data: { something: [...] } }.
+function countOf(settled) {
+    if (settled.status !== "fulfilled") return null;
+    const data = settled.value?.data;
+    const list = Array.isArray(data)
+        ? data
+        : Object.values(data || {}).find(Array.isArray);
+    return list ? list.length : null;
+}
+
+const ACTIONS = [
+    { to: "/projects", icon: "folder", title: "Browse projects", text: "See open projects and the skills they need." },
+    { to: "/projects/create", icon: "plus", title: "Start a project", text: "Describe your idea and pick the skills you need." },
+    { to: "/students", icon: "users", title: "Find students", text: "Search the directory by name, PRN or department." },
+    { to: "/profile", icon: "user", title: "Edit your profile", text: "Add a short bio and your GitHub and LinkedIn." },
+];
+
 function Dashboard() {
-    const { student, logout } = useAuth();
-    const navigate = useNavigate();
+    const { student, token } = useAuth();
+    const [counts, setCounts] = useState({});
+
+    useEffect(() => {
+        if (!token) return undefined;
+        let active = true;
+
+        Promise.allSettled([
+            skillService.getMySkills(token),
+            invitationService.getMyInvitations(token, "PENDING"),
+            joinRequestService.getMyJoinRequests(token, "PENDING"),
+            projectService.getMyProjects(token),
+        ]).then(([skills, invitations, requests, projects]) => {
+            if (!active) return;
+            setCounts({
+                skills: countOf(skills),
+                invitations: countOf(invitations),
+                requests: countOf(requests),
+                projects: countOf(projects),
+            });
+        });
+
+        return () => {
+            active = false;
+        };
+    }, [token]);
 
     const department =
         typeof student?.department === "object"
             ? student?.department?.name
             : student?.department;
 
-    function handleLogout() {
-        logout();
-        navigate("/login", { replace: true });
-    }
+    const firstName = student?.name?.split(" ")[0] || "there";
+    const show = (n) => (n === null || n === undefined ? "–" : n);
 
-    const firstName = student?.name?.split(" ")[0] || "Student";
-    const avatarLetter = firstName.charAt(0).toUpperCase();
+    const stats = [
+        { to: "/skills", label: "Skills added", value: show(counts.skills) },
+        { to: "/my-activity", label: "Pending invitations", value: show(counts.invitations) },
+        { to: "/my-activity", label: "Pending join requests", value: show(counts.requests) },
+        { to: "/projects", label: "Your projects", value: show(counts.projects) },
+    ];
 
     return (
-        <div className="dashboard-layout">
-            <aside className="sidebar">
-                <div className="brand">
-                    <div className="brand-icon">S</div>
-                    <span>SkillSync</span>
+        <div className="dash">
+            <section className="dash-hero">
+                <div>
+                    <h1>Good to see you, {firstName}</h1>
+                    <p>
+                        Keep your skills current and SkillSync will surface the
+                        projects and teammates that fit you best.
+                    </p>
                 </div>
 
-                <p className="sidebar-label">MENU</p>
-
-                <nav className="sidebar-nav">
-                    <button
-                        className="nav-item active"
-                        onClick={() => navigate("/dashboard")}
-                    >
-                        <span>⌂</span> Overview
-                    </button>
-
-                    <button
-                        className="nav-item"
-                        onClick={() => navigate("/profile")}
-                    >
-                        <span>◉</span> My Profile
-                    </button>
-
-                    <button
-                        className="nav-item"
-                        onClick={() => navigate("/skills")}
-                    >
-                        <span>✦</span> My Skills
-                    </button>
-
-                    <button
-                        className="nav-item"
-                        onClick={() => navigate("/projects")}
-                    >
-                        <span>▣</span> Browse Projects
-                    </button>
-
-                    <button
-                        className="nav-item"
-                        onClick={() => navigate("/my-activity")}
-                    >
-                        <span>✉</span> My Activity
-                    </button>
-                </nav>
-
-                <div className="sidebar-bottom">
-                    <div className="sidebar-user">
-                        <div className="user-avatar">{avatarLetter}</div>
-
-                        <div className="user-info">
-                            <strong>{student?.name || "Student"}</strong>
-                            <span>{department || "Student"}</span>
-                        </div>
-                    </div>
-
-                    <button
-                        className="logout-button"
-                        onClick={handleLogout}
-                    >
-                        ↪ Logout
-                    </button>
+                <div className="dash-hero-actions">
+                    <Link to="/projects" className="btn btn-amber">
+                        Find a project <Icon name="arrow" size={18} />
+                    </Link>
+                    <Link to="/skills" className="btn dash-ghost">
+                        Update my skills
+                    </Link>
                 </div>
-            </aside>
+            </section>
 
-            <main className="dashboard-main">
-                <header className="topbar">
-                    <div>
-                        <p className="breadcrumb">Pages / Overview</p>
-                        <h2>Dashboard</h2>
-                    </div>
+            <section className="dash-stats" aria-label="Your activity">
+                {stats.map((s) => (
+                    <Link to={s.to} className="dash-stat" key={s.label}>
+                        <strong>{s.value}</strong>
+                        <span>{s.label}</span>
+                    </Link>
+                ))}
+            </section>
 
-                    <div
-                        className="topbar-profile"
-                        onClick={() => navigate("/profile")}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) => {
-                            if (e.key === "Enter") navigate("/profile");
-                        }}
-                    >
-                        <div className="user-avatar">{avatarLetter}</div>
-                        <span>{student?.name || "Student"}</span>
-                    </div>
-                </header>
-
-                <section className="dashboard-content">
-                    <div className="welcome-banner">
-                        <div>
-                            <p className="welcome-tag">YOUR LEARNING SPACE</p>
-                            <h1>Welcome back, {firstName}! 👋</h1>
-
-                            <p>
-                                Build your skills, discover projects, and
-                                connect your learning with real opportunities.
-                            </p>
-
-                            <button
-                                className="primary-button"
-                                onClick={() => navigate("/skills")}
-                            >
-                                Explore My Skills <span>→</span>
-                            </button>
-                        </div>
-
-                        <div className="welcome-decoration">✦</div>
-                    </div>
-
-                    <div className="section-heading">
-                        <div>
-                            <h2>Your Workspace</h2>
-                            <p>Quick access to your SkillSync activities.</p>
-                        </div>
-                    </div>
-
-                    <div className="overview-grid">
-                        <button
-                            className="overview-card"
-                            onClick={() => navigate("/skills")}
-                        >
-                            <div className="overview-icon skills-icon">✦</div>
-                            <div>
-                                <h3>My Skills</h3>
-                                <p>Manage your technical and soft skills.</p>
-                            </div>
-                            <span className="card-arrow">→</span>
-                        </button>
-
-                        <button
-                            className="overview-card"
-                            onClick={() => navigate("/projects")}
-                        >
-                            <div className="overview-icon projects-icon">▣</div>
-                            <div>
-                                <h3>Browse Projects</h3>
-                                <p>
-                                    Discover projects, explore required skills,
-                                    and find collaboration opportunities.
-                                </p>
-                            </div>
-                            <span className="card-arrow">→</span>
-                        </button>
-
-                        <button
-                            className="overview-card"
-                            onClick={() => navigate("/profile")}
-                        >
-                            <div className="overview-icon profile-icon">◉</div>
-                            <div>
-                                <h3>My Profile</h3>
-                                <p>View your academic and personal details.</p>
-                            </div>
-                            <span className="card-arrow">→</span>
-                        </button>
-
-                        <button
-                            className="overview-card"
-                            onClick={() => navigate("/students")}
-                        >
-                            <div className="overview-icon skills-icon">♧</div>
-                            <div>
-                                <h3>Student Directory</h3>
-                                <p>
-                                    Discover students, explore their skills,
-                                    and find potential collaborators.
-                                </p>
-                            </div>
-                            <span className="card-arrow">→</span>
-                        </button>
-
-                        <button
-                            className="overview-card"
-                            onClick={() => navigate("/my-activity")}
-                        >
-                            <div className="overview-icon profile-icon">✉</div>
-                            <div>
-                                <h3>My Activity</h3>
-                                <p>
-                                    Track received invitations and your join
-                                    requests.
-                                </p>
-                            </div>
-                            <span className="card-arrow">→</span>
-                        </button>
-
-                        <button
-                            className="overview-card"
-                            onClick={() => navigate("/projects/create")}
-                        >
-                            <div className="overview-icon projects-icon">+</div>
-                            <div>
-                                <h3>Create Project</h3>
-                                <p>Share your idea and build a project team.</p>
-                            </div>
-                            <span className="card-arrow">→</span>
-                        </button>
-                    </div>
-
-                    <div className="section-heading profile-heading">
-                        <div>
-                            <h2>Student Information</h2>
-                            <p>Your registered account details.</p>
-                        </div>
-                        <button
-                            className="profile-view-button"
-                            onClick={() => navigate("/profile")}
-                        >
-                            View Profile →
-                        </button>
-                        <button
-                            className="nav-item"
-                            onClick={() => navigate("/students")}
-                        >
-                            <span>♧</span> Student Directory
-                        </button>
-                    </div>
-
-                    <section className="student-profile-card">
-                        <div className="profile-card-header">
-                            <div className="profile-avatar">{avatarLetter}</div>
-
-                            <div>
-                                <h3>{student?.name || "Student"}</h3>
-                                <p>{student?.email || "Email not available"}</p>
-                            </div>
-
-                            <span className="account-status">
-                                ● Active account
+            <section>
+                <h2 className="dash-heading">Jump back in</h2>
+                <div className="dash-actions">
+                    {ACTIONS.map((a) => (
+                        <Link to={a.to} className="dash-action" key={a.to}>
+                            <span className="dash-action-icon">
+                                <Icon name={a.icon} />
                             </span>
-                        </div>
+                            <span>
+                                <strong>{a.title}</strong>
+                                <small>{a.text}</small>
+                            </span>
+                        </Link>
+                    ))}
+                </div>
+            </section>
 
-                        <div className="profile-details">
-                            <div className="detail-item">
-                                <span>PRN</span>
-                                <strong>{student?.prn || "—"}</strong>
-                            </div>
+            <section className="dash-account">
+                <div className="dash-account-head">
+                    <span className="avatar dash-avatar">
+                        {firstName.charAt(0).toUpperCase()}
+                    </span>
+                    <div>
+                        <h2>{student?.name || "Student"}</h2>
+                        <p>{student?.email || "Email not available"}</p>
+                    </div>
+                    <Link to="/profile" className="btn btn-outline dash-account-link">
+                        View profile
+                    </Link>
+                </div>
 
-                            <div className="detail-item">
-                                <span>Department</span>
-                                <strong>{department || "—"}</strong>
-                            </div>
-
-                            <div className="detail-item">
-                                <span>Class Year</span>
-                                <strong>{student?.classYear ?? "—"}</strong>
-                            </div>
-
-                            <div className="detail-item">
-                                <span>Division</span>
-                                <strong>{student?.division || "Not specified"}</strong>
-                            </div>
-                        </div>
-                    </section>
-
-                    <footer className="dashboard-footer">
-                        SkillSync · Learn, Build, Collaborate.
-                    </footer>
-                </section>
-            </main>
+                <dl className="dash-details">
+                    <div><dt>PRN</dt><dd>{student?.prn || "–"}</dd></div>
+                    <div><dt>Department</dt><dd>{department || "–"}</dd></div>
+                    <div><dt>Class year</dt><dd>{student?.classYear ?? "–"}</dd></div>
+                    <div><dt>Division</dt><dd>{student?.division || "Not specified"}</dd></div>
+                </dl>
+            </section>
         </div>
     );
 }

@@ -65,7 +65,7 @@ function Register() {
                 }),
             })
 
-            setSuccess('Registration successful! You can now sign in.')
+            setSuccess('Account created. Taking you to sign in...')
             setForm(initialForm)
 
             setTimeout(() => {
@@ -81,50 +81,42 @@ function Register() {
 
     return (
         <AuthLayout activeTab="register">
-            <div className="form-heading">
-                <div className="heading-top">
-                    <span className="eyebrow">NEW SCHOLAR REGISTRATION</span>
-                    <span className="endpoint-badge">
-                        <span className="status-dot" />
-                        POST /auth/register
-                    </span>
-                </div>
-
-                <h2>Create Account</h2>
-                <p>
-                    Join your campus collaboration network and showcase your skills.
-                </p>
+            <div className="auth-heading">
+                <h1>Create your account</h1>
+                <p>Use your college details so teammates can find and trust your profile.</p>
             </div>
 
-            <form className="auth-form register-form" onSubmit={handleSubmit}>
-                <div className="form-field">
-                    <label htmlFor="prn">Permanent Registration Number (PRN)</label>
-                    <input
-                        id="prn"
-                        name="prn"
-                        value={form.prn}
-                        onChange={handleChange}
-                        placeholder="Enter your PRN"
-                        required
-                    />
+            <form className="auth-form" onSubmit={handleSubmit}>
+                <div className="form-row">
+                    <div className="form-field">
+                        <label htmlFor="prn">PRN</label>
+                        <input
+                            id="prn"
+                            name="prn"
+                            value={form.prn}
+                            onChange={handleChange}
+                            placeholder="Registration number"
+                            required
+                        />
+                    </div>
+
+                    <div className="form-field">
+                        <label htmlFor="name">Full name</label>
+                        <input
+                            id="name"
+                            name="name"
+                            value={form.name}
+                            onChange={handleChange}
+                            placeholder="Your full name"
+                            minLength={2}
+                            autoComplete="name"
+                            required
+                        />
+                    </div>
                 </div>
 
                 <div className="form-field">
-                    <label htmlFor="name">Full Name</label>
-                    <input
-                        id="name"
-                        name="name"
-                        value={form.name}
-                        onChange={handleChange}
-                        placeholder="Enter your full name"
-                        minLength={2}
-                        autoComplete="name"
-                        required
-                    />
-                </div>
-
-                <div className="form-field">
-                    <label htmlFor="email">College Email</label>
+                    <label htmlFor="email">College email</label>
                     <input
                         id="email"
                         name="email"
@@ -147,7 +139,7 @@ function Register() {
                             type={showPassword ? 'text' : 'password'}
                             value={form.password}
                             onChange={handleChange}
-                            placeholder="Create a password"
+                            placeholder="At least 8 characters"
                             minLength={8}
                             autoComplete="new-password"
                             required
@@ -157,6 +149,7 @@ function Register() {
                             type="button"
                             className="password-toggle"
                             onClick={() => setShowPassword((value) => !value)}
+                            aria-label={showPassword ? 'Hide password' : 'Show password'}
                         >
                             {showPassword ? 'Hide' : 'Show'}
                         </button>
@@ -177,7 +170,7 @@ function Register() {
                     </div>
 
                     <div className="form-field">
-                        <label htmlFor="classYear">Class Year</label>
+                        <label htmlFor="classYear">Class year</label>
                         <input
                             id="classYear"
                             name="classYear"
@@ -193,7 +186,7 @@ function Register() {
                 </div>
 
                 <div className="form-field">
-                    <label htmlFor="division">Division (Optional)</label>
+                    <label htmlFor="division">Division (optional)</label>
                     <input
                         id="division"
                         name="division"
@@ -204,10 +197,7 @@ function Register() {
                 </div>
 
                 {fieldErrors.map((item, index) => (
-                    <p
-                        className="auth-error"
-                        key={`${item.field}-${index}`}
-                    >
+                    <p className="auth-error" key={`${item.field}-${index}`}>
                         {item.field}: {item.message}
                     </p>
                 ))}
@@ -226,32 +216,16 @@ function Register() {
 
                 <button
                     type="submit"
-                    className="primary-button"
+                    className="btn btn-primary btn-block"
                     disabled={submitting}
                 >
-                    {submitting ? 'Creating account...' : '＋  Create Student Account'}
+                    {submitting ? 'Creating account...' : 'Create account'}
                 </button>
             </form>
 
             <p className="auth-switch">
                 Already registered? <Link to="/login">Sign in</Link>
             </p>
-
-            <div className="campus-section">
-                <div className="section-divider">
-                    <span />
-                    CAMPUS STATUS
-                    <span />
-                </div>
-
-                <div className="campus-status">
-                    <span className="campus-icon">▣</span>
-                    <div>
-                        <strong>Student Directory Registration</strong>
-                        <small>Use your valid institutional details</small>
-                    </div>
-                </div>
-            </div>
         </AuthLayout>
     )
 }

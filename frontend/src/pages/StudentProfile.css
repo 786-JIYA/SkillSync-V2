@@ -1,14 +1,14 @@
 .student-profile-page {
-    min-height: 100vh;
+    min-height: 0;
     padding: 40px 7%;
-    background: #f7f8fc;
-    color: #20243a;
+    background: transparent;
+    color: var(--ink);
 }
 
 .student-profile-back {
     border: none;
     background: transparent;
-    color: #555c78;
+    color: var(--muted);
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -16,7 +16,7 @@
 }
 
 .student-profile-back:hover {
-    color: #6558d3;
+    color: var(--accent);
 }
 
 .student-profile-header {
@@ -25,7 +25,7 @@
     gap: 24px;
     padding: 32px;
     background: white;
-    border: 1px solid #e9eaf2;
+    border: 1px solid var(--line);
     border-radius: 18px;
     margin-bottom: 24px;
 }
@@ -38,8 +38,8 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: #eeeaff;
-    color: #6558d3;
+    background: var(--accent-soft);
+    color: var(--accent);
     font-size: 30px;
     font-weight: 700;
 }
@@ -51,15 +51,15 @@
 
 .student-profile-identity p {
     margin: 0 0 12px;
-    color: #777d94;
+    color: var(--muted);
 }
 
 .student-profile-identity span {
     display: inline-block;
     padding: 5px 12px;
     border-radius: 20px;
-    background: #eeeaff;
-    color: #6558d3;
+    background: var(--accent-soft);
+    color: var(--accent);
     font-size: 12px;
     font-weight: 700;
 }
@@ -68,7 +68,7 @@
     padding: 28px 32px;
     margin-bottom: 22px;
     background: white;
-    border: 1px solid #e9eaf2;
+    border: 1px solid var(--line);
     border-radius: 18px;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .student-profile-section>p {
-    color: #737991;
+    color: var(--muted);
     line-height: 1.7;
 }
 
@@ -95,7 +95,7 @@
 }
 
 .student-profile-details span {
-    color: #898da1;
+    color: var(--muted);
     font-size: 13px;
 }
 
@@ -114,9 +114,9 @@
     flex-direction: column;
     gap: 8px;
     padding: 16px;
-    border: 1px solid #e9eaf2;
+    border: 1px solid var(--line);
     border-radius: 12px;
-    background: #fcfcff;
+    background: var(--surface-2);
 }
 
 .student-profile-skill strong {
@@ -125,7 +125,7 @@
 
 .student-profile-skill span,
 .student-profile-skill small {
-    color: #858ba0;
+    color: var(--muted);
     font-size: 12px;
 }
 
@@ -138,15 +138,15 @@
 .student-profile-links a {
     padding: 10px 18px;
     border-radius: 9px;
-    background: #eeeaff;
-    color: #6558d3;
+    background: var(--accent-soft);
+    color: var(--accent);
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
 }
 
 .student-profile-links a:hover {
-    background: #e2ddff;
+    background: var(--accent-soft);
 }
 
 .student-profile-projects {
@@ -157,7 +157,7 @@
 
 .student-profile-projects article {
     padding: 18px;
-    border: 1px solid #e9eaf2;
+    border: 1px solid var(--line);
     border-radius: 12px;
 }
 
@@ -167,13 +167,13 @@
 }
 
 .student-profile-projects p {
-    color: #777d94;
+    color: var(--muted);
     font-size: 14px;
     line-height: 1.6;
 }
 
 .student-profile-projects span {
-    color: #6558d3;
+    color: var(--accent);
     font-size: 12px;
     font-weight: 600;
 }
@@ -188,7 +188,7 @@
 }
 
 .student-profile-message p {
-    color: #777d94;
+    color: var(--muted);
 }
 
 .student-profile-message button {
@@ -196,7 +196,7 @@
     padding: 11px 20px;
     border: none;
     border-radius: 9px;
-    background: #6558d3;
+    background: var(--accent);
     color: white;
     cursor: pointer;
 }

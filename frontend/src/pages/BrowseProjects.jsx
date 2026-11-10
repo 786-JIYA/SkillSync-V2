@@ -9,7 +9,7 @@ import "./BrowseProjects.css";
 
 function BrowseProjects() {
     const navigate = useNavigate();
-    const { token, student, logout } = useAuth();
+    const { token } = useAuth();
 
     const [projects, setProjects] = useState([]);
     const [skills, setSkills] = useState([]);
@@ -126,57 +126,8 @@ function BrowseProjects() {
 
     return (
         <div className="browse-page">
-            <aside className="browse-sidebar">
-                <div className="browse-brand">
-                    <span className="brand-symbol">S</span>
-                    <span>SkillSync</span>
-                </div>
 
-                <nav className="browse-nav">
-                    <button onClick={() => navigate("/dashboard")}>
-                        ◈ Overview
-                    </button>
-
-                    <button onClick={() => navigate("/skills")}>
-                        ◇ My Skills
-                    </button>
-
-                    <button onClick={() => navigate("/students")}>
-                        ♧ Student Directory
-                    </button>
-
-                    <button className="active">
-                        ▣ Projects
-                    </button>
-                </nav>
-
-                <div className="browse-sidebar-bottom">
-                    <div className="sidebar-student">
-                        <div className="student-avatar">
-                            {student?.name?.charAt(0) || "S"}
-                        </div>
-                        <div>
-                            <strong>{student?.name || "Student"}</strong>
-                            <small>{student?.department?.name || "Student"}</small>
-                        </div>
-                    </div>
-
-                    <button
-                        className="browse-logout"
-                        onClick={logout}
-                    >
-                        ↪ Logout
-                    </button>
-                </div>
-            </aside>
-
-            <main className="browse-main">
-                <header className="browse-topbar">
-                    <span>Student Workspace / Projects</span>
-                    <div className="topbar-avatar">
-                        {student?.name?.charAt(0) || "S"}
-                    </div>
-                </header>
+            <div className="browse-main">
 
                 <section className="browse-content">
                     <div className="browse-heading">
@@ -422,7 +373,7 @@ function BrowseProjects() {
                         </>
                     )}
                 </section>
-            </main>
+            </div>
         </div>
     );
 }

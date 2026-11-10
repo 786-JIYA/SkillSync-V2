@@ -3,7 +3,7 @@
     max-width: 1100px;
     margin: 0 auto;
     padding: 40px 24px;
-    color: #172033;
+    color: var(--ink);
 }
 
 .skills-header {
@@ -15,7 +15,7 @@
 }
 
 .skills-eyebrow {
-    color: #6558e8;
+    color: var(--accent);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -28,11 +28,11 @@
 
 .skills-header p,
 .section-heading p {
-    color: #747b8c;
+    color: var(--muted);
 }
 
 .skills-count {
-    background: #f0efff;
+    background: var(--accent-soft);
     padding: 16px 24px;
     border-radius: 12px;
     text-align: center;
@@ -41,7 +41,7 @@
 .skills-count span {
     font-size: 28px;
     font-weight: 700;
-    color: #6558e8;
+    color: var(--accent);
 }
 
 .skills-count p {
@@ -79,7 +79,7 @@
     grid-template-columns: 2fr 1.5fr auto;
     gap: 16px;
     align-items: end;
-    background: #f6f7fc;
+    background: var(--surface-2);
     padding: 20px;
     border-radius: 12px;
 }
@@ -99,17 +99,17 @@
 .skill-proficiency select {
     width: 100%;
     padding: 11px;
-    border: 1px solid #dfe2eb;
+    border: 1px solid var(--line);
     border-radius: 8px;
     background: white;
-    color: #172033;
+    color: var(--ink);
 }
 
 .add-skill-button {
     padding: 12px 20px;
     border: none;
     border-radius: 8px;
-    background: #6558e8;
+    background: var(--accent);
     color: white;
     font-weight: 600;
     cursor: pointer;
@@ -132,7 +132,7 @@
     justify-content: space-between;
     gap: 16px;
     padding: 16px;
-    background: #f6f7fc;
+    background: var(--surface-2);
     border-radius: 12px;
 }
 
@@ -147,8 +147,8 @@
     width: 42px;
     height: 42px;
     border-radius: 10px;
-    background: #e9e7ff;
-    color: #6558e8;
+    background: var(--accent-soft);
+    color: var(--accent);
     display: grid;
     place-items: center;
     font-weight: 700;
@@ -163,7 +163,7 @@
 .skill-category,
 .skill-proficiency span {
     font-size: 12px;
-    color: #747b8c;
+    color: var(--muted);
 }
 
 .skill-proficiency {
@@ -176,24 +176,24 @@
 .delete-skill-button {
     border: none;
     background: transparent;
-    color: #d13d4b;
+    color: var(--danger);
     cursor: pointer;
     font-weight: 600;
 }
 
 .skill-total {
-    color: #6558e8;
+    color: var(--accent);
     font-weight: 600;
 }
 
 .skills-empty {
     text-align: center;
     padding: 40px 10px;
-    color: #747b8c;
+    color: var(--muted);
 }
 
 .skills-empty h3 {
-    color: #172033;
+    color: var(--ink);
 }
 
 .skills-error,
@@ -204,13 +204,13 @@
 }
 
 .skills-error {
-    background: #fff0f0;
-    color: #c12c38;
+    background: var(--danger-soft);
+    color: var(--danger);
 }
 
 .skills-success {
-    background: #eaf8ef;
-    color: #247943;
+    background: var(--ok-soft);
+    color: var(--ok);
 }
 
 .skills-loading {

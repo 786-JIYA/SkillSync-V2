@@ -79,7 +79,7 @@ function TeamManagement() {
     if (!team) return null;
 
     return (
-        <main className="team-management-page">
+        <div className="team-management-page">
             <header className="team-management-header">
                 <div>
                     <Link to="/projects" className="team-back-link">
@@ -209,7 +209,7 @@ function TeamManagement() {
                     </button>
                 </section>
             )}
-        </main>
+        </div>
     );
 }
 

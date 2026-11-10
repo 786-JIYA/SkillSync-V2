@@ -128,14 +128,14 @@ function MyProfile() {
 
     if (loading) {
         return (
-            <main className="my-profile-page">
+            <div className="my-profile-page">
                 <p>Loading your profile...</p>
-            </main>
+            </div>
         );
     }
 
     return (
-        <main className="my-profile-page">
+        <div className="my-profile-page">
             <header className="my-profile-header">
                 <div>
                     <p className="profile-eyebrow">STUDENT WORKSPACE</p>
@@ -270,7 +270,7 @@ function MyProfile() {
                     Manage Skills →
                 </Link>
             </section>
-        </main>
+        </div>
     );
 }
 

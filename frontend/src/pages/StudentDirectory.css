@@ -1,8 +1,8 @@
 .directory-page {
     display: flex;
-    min-height: 100vh;
-    background: #f7f8fc;
-    color: #20243a;
+    min-height: 0;
+    background: transparent;
+    color: var(--ink);
     font-family: inherit;
 }
 
@@ -31,7 +31,7 @@
     height: 38px;
     display: grid;
     place-items: center;
-    background: #7775f5;
+    background: var(--accent);
     border-radius: 11px;
 }
 
@@ -86,12 +86,12 @@
 .directory-topbar {
     height: 75px;
     background: white;
-    border-bottom: 1px solid #e9eaf1;
+    border-bottom: 1px solid var(--line);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 40px;
-    color: #777b91;
+    color: var(--muted);
     font-size: 14px;
 }
 
@@ -99,7 +99,7 @@
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: #7775f5;
+    background: var(--accent);
     color: white;
     display: grid;
     place-items: center;
@@ -117,7 +117,7 @@
 }
 
 .directory-eyebrow {
-    color: #7775f5;
+    color: var(--accent);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -126,11 +126,11 @@
 .directory-heading h1 {
     font-size: 30px;
     margin: 10px 0;
-    color: #20243a;
+    color: var(--ink);
 }
 
 .directory-heading>p:last-child {
-    color: #85899c;
+    color: var(--muted);
     font-size: 14px;
     line-height: 1.6;
 }
@@ -145,11 +145,11 @@
 .directory-filters input,
 .directory-filters select {
     height: 46px;
-    border: 1px solid #e2e4ed;
+    border: 1px solid var(--line);
     border-radius: 9px;
     padding: 0 15px;
     background: white;
-    color: #34384e;
+    color: var(--ink);
     font-size: 13px;
     outline: none;
 }
@@ -160,7 +160,7 @@
 
 .directory-filters input:focus,
 .directory-filters select:focus {
-    border-color: #7775f5;
+    border-color: var(--accent);
 }
 
 /* Results */
@@ -176,7 +176,7 @@
 }
 
 .directory-results-heading span {
-    color: #85899c;
+    color: var(--muted);
     font-size: 13px;
 }
 
@@ -189,7 +189,7 @@
 
 .directory-card {
     background: white;
-    border: 1px solid #ececf3;
+    border: 1px solid var(--line);
     border-radius: 14px;
     padding: 25px 20px;
     text-align: center;
@@ -206,8 +206,8 @@
     height: 65px;
     margin: 0 auto 15px;
     border-radius: 50%;
-    background: #eeedff;
-    color: #7775f5;
+    background: var(--accent-soft);
+    color: var(--accent);
     display: grid;
     place-items: center;
     font-size: 24px;
@@ -220,7 +220,7 @@
 }
 
 .directory-card>p {
-    color: #85899c;
+    color: var(--muted);
     font-size: 13px;
     margin-bottom: 18px;
 }
@@ -235,8 +235,8 @@
 }
 
 .directory-skills span {
-    background: #f0efff;
-    color: #6966d9;
+    background: var(--accent-soft);
+    color: var(--accent);
     padding: 6px 10px;
     border-radius: 20px;
     font-size: 11px;
@@ -247,14 +247,14 @@
     padding: 11px;
     border: none;
     border-radius: 8px;
-    background: #7775f5;
+    background: var(--accent);
     color: white;
     font-weight: 600;
     cursor: pointer;
 }
 
 .directory-card button:hover {
-    background: #625fe0;
+    background: var(--accent-strong);
 }
 
 /* States */
@@ -265,7 +265,7 @@
     text-align: center;
     background: white;
     border-radius: 12px;
-    color: #85899c;
+    color: var(--muted);
 }
 
 .directory-error button {
@@ -273,7 +273,7 @@
     padding: 10px 20px;
     border: none;
     border-radius: 8px;
-    background: #7775f5;
+    background: var(--accent);
     color: white;
     cursor: pointer;
 }
@@ -289,7 +289,7 @@
 
 .directory-pagination button {
     padding: 10px 18px;
-    border: 1px solid #e2e4ed;
+    border: 1px solid var(--line);
     border-radius: 8px;
     background: white;
     cursor: pointer;
@@ -302,7 +302,7 @@
 
 .directory-pagination span {
     font-size: 13px;
-    color: #777b91;
+    color: var(--muted);
 }
 
 /* Responsive */

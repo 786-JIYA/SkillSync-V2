@@ -1,8 +1,8 @@
 .team-management-page {
-    min-height: 100vh;
+    min-height: 0;
     padding: 40px 7%;
-    background: #f6f7fb;
-    color: #20243a;
+    background: transparent;
+    color: var(--ink);
 }
 
 .team-management-header {
@@ -14,14 +14,14 @@
 }
 
 .team-back-link {
-    color: #626b85;
+    color: var(--muted);
     text-decoration: none;
     font-size: 14px;
 }
 
 .team-eyebrow {
     margin: 22px 0 8px;
-    color: #626bce;
+    color: var(--accent);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -30,12 +30,12 @@
 .team-management-header h1 {
     margin: 0;
     font-size: 32px;
-    color: #171c35;
+    color: var(--ink);
 }
 
 .team-subtitle,
 .team-section-heading p {
-    color: #7a8198;
+    color: var(--muted);
     margin-top: 8px;
 }
 
@@ -43,8 +43,8 @@
 .team-member-badge {
     padding: 7px 13px;
     border-radius: 20px;
-    background: #e9eaff;
-    color: #5056b5;
+    background: var(--accent-soft);
+    color: var(--accent);
     font-size: 12px;
     font-weight: 700;
 }
@@ -60,7 +60,7 @@
 .team-management-section,
 .team-danger-section {
     background: white;
-    border: 1px solid #e9eaf1;
+    border: 1px solid var(--line);
     border-radius: 14px;
     padding: 22px;
 }
@@ -72,12 +72,12 @@
 }
 
 .team-card-label {
-    color: #7a8198;
+    color: var(--muted);
     font-size: 13px;
 }
 
 .team-overview-card strong {
-    color: #20243a;
+    color: var(--ink);
     font-size: 25px;
 }
 
@@ -115,7 +115,7 @@
     align-items: center;
     gap: 14px;
     padding: 14px;
-    border: 1px solid #edf0f5;
+    border: 1px solid var(--line);
     border-radius: 11px;
 }
 
@@ -127,8 +127,8 @@
     height: 42px;
     flex-shrink: 0;
     border-radius: 12px;
-    background: #eceeff;
-    color: #5159bd;
+    background: var(--accent-soft);
+    color: var(--accent);
     font-weight: 700;
 }
 
@@ -143,7 +143,7 @@
 
 .team-member-info p {
     margin: 5px 0 0;
-    color: #858ba0;
+    color: var(--muted);
     font-size: 12px;
 }
 
@@ -158,7 +158,7 @@
     align-items: center;
     gap: 14px;
     padding: 17px;
-    border: 1px solid #e9eaf1;
+    border: 1px solid var(--line);
     border-radius: 12px;
     color: inherit;
     text-decoration: none;
@@ -166,7 +166,7 @@
 }
 
 .team-action-card:hover {
-    border-color: #8589dc;
+    border-color: var(--accent);
     transform: translateY(-2px);
 }
 
@@ -181,7 +181,7 @@
 
 .team-action-card p {
     margin: 6px 0 0;
-    color: #858ba0;
+    color: var(--muted);
     font-size: 12px;
     line-height: 1.5;
 }
@@ -191,14 +191,14 @@
     justify-content: space-between;
     align-items: center;
     gap: 20px;
-    border-color: #f1dede;
+    border-color: var(--danger-soft);
 }
 
 .team-danger-section button {
     padding: 10px 18px;
     border: none;
     border-radius: 8px;
-    background: #c94d58;
+    background: var(--danger);
     color: white;
     font-weight: 600;
     cursor: pointer;
@@ -213,14 +213,14 @@
     margin-bottom: 20px;
     padding: 12px 15px;
     border-radius: 9px;
-    background: #fff0f0;
-    color: #b42332;
+    background: var(--danger-soft);
+    color: var(--danger);
 }
 
 .team-management-state {
     padding: 60px 20px;
     text-align: center;
-    color: #626b85;
+    color: var(--muted);
 }
 
 .team-management-state button {
@@ -228,13 +228,13 @@
     padding: 9px 18px;
     border: none;
     border-radius: 8px;
-    background: #5056b5;
+    background: var(--accent);
     color: white;
     cursor: pointer;
 }
 
 .team-empty {
-    color: #858ba0;
+    color: var(--muted);
     text-align: center;
     padding: 20px;
 }
