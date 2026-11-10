@@ -1,6 +1,10 @@
 
 const prisma = require("../lib/prisma");
 
+const MAX_MESSAGE_LENGTH = 2000;
+const DEFAULT_PAGE_SIZE = 20;
+const MAX_PAGE_SIZE = 100;
+
 const createError = (message, statusCode, code) => {
     const error = new Error(message);
     error.statusCode = statusCode;
@@ -9,7 +13,6 @@ const createError = (message, statusCode, code) => {
 };
 
 // GET WORKSPACE BY TEAM ID
-
 const getWorkspaceByTeamId = async (teamId, studentId) => {
     const team = await prisma.team.findUnique({
         where: { id: teamId },
@@ -31,7 +34,11 @@ const getWorkspaceByTeamId = async (teamId, studentId) => {
     });
 
     if (!team) {
-        throw createError("Team not found", 404, "TEAM_NOT_FOUND");
+        throw createError(
+            "Team not found",
+            404,
+            "TEAM_NOT_FOUND"
+        );
     }
 
     if (team.members.length === 0) {
@@ -53,15 +60,112 @@ const getWorkspaceByTeamId = async (teamId, studentId) => {
     return team.workspace;
 };
 
-
-// GET WORKSPACE MESSAGES
-const getWorkspaceMessages = async (teamId, studentId) => {
+// GET WORKSPACE MESSAGES WITH PAGINATION
+const getWorkspaceMessages = async (
+    teamId,
+    studentId,
+    page = 1,
+    limit = DEFAULT_PAGE_SIZE
+) => {
     // Verify workspace access first.
-    const workspace = await getWorkspaceByTeamId(teamId, studentId);
+    const workspace = await getWorkspaceByTeamId(
+        teamId,
+        studentId
+    );
 
-    const messages = await prisma.workspaceMessage.findMany({
-        where: {
+    // Normalize pagination values.
+    page = Number.parseInt(page, 10);
+    limit = Number.parseInt(limit, 10);
+
+    if (!Number.isInteger(page) || page < 1) {
+        page = 1;
+    }
+
+    if (!Number.isInteger(limit) || limit < 1) {
+        limit = DEFAULT_PAGE_SIZE;
+    }
+
+    limit = Math.min(limit, MAX_PAGE_SIZE);
+
+    const skip = (page - 1) * limit;
+
+    // Fetch messages and total count.
+    const [messages, totalMessages] = await prisma.$transaction([
+        prisma.workspaceMessage.findMany({
+            where: {
+                workspaceId: workspace.id,
+            },
+            include: {
+                sender: {
+                    select: {
+                        id: true,
+                        name: true,
+                    },
+                },
+            },
+            orderBy: [
+                { createdAt: "asc" },
+                { id: "asc" },
+            ],
+            skip,
+            take: limit,
+        }),
+
+        prisma.workspaceMessage.count({
+            where: {
+                workspaceId: workspace.id,
+            },
+        }),
+    ]);
+
+    return {
+        messages,
+        pagination: {
+            currentPage: page,
+            pageSize: limit,
+            totalMessages,
+            totalPages: Math.ceil(totalMessages / limit),
+        },
+    };
+};
+
+// SEND WORKSPACE MESSAGE
+const sendWorkspaceMessage = async (
+    teamId,
+    studentId,
+    content
+) => {
+    // Verify workspace access first.
+    const workspace = await getWorkspaceByTeamId(
+        teamId,
+        studentId
+    );
+
+    // Validate message content.
+    if (typeof content !== "string" || !content.trim()) {
+        throw createError(
+            "Message content is required",
+            400,
+            "MESSAGE_CONTENT_REQUIRED"
+        );
+    }
+
+    const trimmedContent = content.trim();
+
+    if (trimmedContent.length > MAX_MESSAGE_LENGTH) {
+        throw createError(
+            `Message cannot exceed ${MAX_MESSAGE_LENGTH} characters`,
+            400,
+            "MESSAGE_TOO_LONG"
+        );
+    }
+
+    // Save message in database.
+    const message = await prisma.workspaceMessage.create({
+        data: {
             workspaceId: workspace.id,
+            senderId: studentId,
+            content: trimmedContent,
         },
         include: {
             sender: {
@@ -71,16 +175,13 @@ const getWorkspaceMessages = async (teamId, studentId) => {
                 },
             },
         },
-        orderBy: {
-            createdAt: "asc",
-        },
     });
 
-    return messages;
+    return message;
 };
-
 
 module.exports = {
     getWorkspaceByTeamId,
-    getWorkspaceMessages
+    getWorkspaceMessages,
+    sendWorkspaceMessage,
 };
