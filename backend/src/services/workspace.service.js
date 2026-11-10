@@ -54,6 +54,33 @@ const getWorkspaceByTeamId = async (teamId, studentId) => {
 };
 
 
+// GET WORKSPACE MESSAGES
+const getWorkspaceMessages = async (teamId, studentId) => {
+    // Verify workspace access first.
+    const workspace = await getWorkspaceByTeamId(teamId, studentId);
+
+    const messages = await prisma.workspaceMessage.findMany({
+        where: {
+            workspaceId: workspace.id,
+        },
+        include: {
+            sender: {
+                select: {
+                    id: true,
+                    name: true,
+                },
+            },
+        },
+        orderBy: {
+            createdAt: "asc",
+        },
+    });
+
+    return messages;
+};
+
+
 module.exports = {
     getWorkspaceByTeamId,
+    getWorkspaceMessages
 };

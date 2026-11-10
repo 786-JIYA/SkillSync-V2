@@ -22,6 +22,13 @@ router.get(
     workspaceController.getWorkspaceByTeamId
 );
 
+// Get workspace messages
+router.get(
+    "/:teamId/workspace/messages",
+    authenticateStudent,
+    workspaceController.getWorkspaceMessages
+);
+
 // Leave a team
 router.delete(
     "/:teamId/members/me",
