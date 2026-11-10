@@ -224,53 +224,8 @@ function ProjectDetails() {
 
     return (
         <div className="project-details-page">
-            <aside className="details-sidebar">
-                <div className="details-brand">
-                    <span>S</span>
-                    SkillSync
-                </div>
 
-                <nav className="details-nav">
-                    <button onClick={() => navigate("/dashboard")}>
-                        ◈ Overview
-                    </button>
-
-                    <button onClick={() => navigate("/skills")}>
-                        ◇ My Skills
-                    </button>
-
-                    <button
-                        className="active"
-                        onClick={() => navigate("/projects")}
-                    >
-                        ▣ Projects
-                    </button>
-                </nav>
-
-                <div className="details-sidebar-bottom">
-                    <div className="details-user">
-                        <div className="details-avatar">
-                            {student?.name?.charAt(0) || "S"}
-                        </div>
-
-                        <div>
-                            <strong>{student?.name || "Student"}</strong>
-                            <small>
-                                {student?.department?.name || "Student"}
-                            </small>
-                        </div>
-                    </div>
-                </div>
-            </aside>
-
-            <main className="details-main">
-                <header className="details-topbar">
-                    <span>Student Workspace / Projects / Details</span>
-
-                    <div className="details-top-avatar">
-                        {student?.name?.charAt(0) || "S"}
-                    </div>
-                </header>
+            <div className="details-main">
 
                 <section className="details-content">
                     <button
@@ -663,7 +618,7 @@ function ProjectDetails() {
                         </section>
                     )}
                 </section>
-            </main>
+            </div>
         </div>
     );
 }

@@ -34,37 +34,23 @@ function Login() {
 
     return (
         <AuthLayout activeTab="login">
-            <div className="form-heading">
-                <div className="heading-top">
-                    <span className="eyebrow">REGISTERED SCHOLARS</span>
-                    <span className="endpoint-badge">
-                        <span className="status-dot" />
-                        POST /auth/login
-                    </span>
-                </div>
-
-                <h2>Log in</h2>
-                <p>
-                    Access your team roster, skill evaluations, and project workspaces.
-                </p>
+            <div className="auth-heading">
+                <h1>Welcome back</h1>
+                <p>Sign in to see your projects, invitations and skill matches.</p>
             </div>
 
             <form className="auth-form" onSubmit={handleSubmit}>
                 <div className="form-field">
-                    <label htmlFor="email">College Email</label>
-
-                    <div className="input-wrapper">
-                        <span className="input-icon">@</span>
-                        <input
-                            id="email"
-                            type="email"
-                            value={email}
-                            onChange={(event) => setEmail(event.target.value)}
-                            placeholder="student@college.edu"
-                            autoComplete="email"
-                            required
-                        />
-                    </div>
+                    <label htmlFor="email">College email</label>
+                    <input
+                        id="email"
+                        type="email"
+                        value={email}
+                        onChange={(event) => setEmail(event.target.value)}
+                        placeholder="student@college.edu"
+                        autoComplete="email"
+                        required
+                    />
                 </div>
 
                 <div className="form-field">
@@ -76,8 +62,6 @@ function Login() {
                     </div>
 
                     <div className="input-wrapper">
-                        <span className="input-icon">♙</span>
-
                         <input
                             id="password"
                             type={showPassword ? 'text' : 'password'}
@@ -99,15 +83,6 @@ function Login() {
                     </div>
                 </div>
 
-                <div className="form-options">
-                    <label className="checkbox-label">
-                        <input type="checkbox" defaultChecked />
-                        <span>Keep 30-day session</span>
-                    </label>
-
-                    <span className="security-label">♧ SHA-256</span>
-                </div>
-
                 {error && (
                     <p className="auth-error" role="alert">
                         {error}
@@ -116,32 +91,16 @@ function Login() {
 
                 <button
                     type="submit"
-                    className="primary-button"
+                    className="btn btn-primary btn-block"
                     disabled={submitting}
                 >
-                    {submitting ? 'Signing in...' : '⇥  Log in to Workspace'}
+                    {submitting ? 'Signing in...' : 'Sign in'}
                 </button>
             </form>
 
             <p className="auth-switch">
-                Don't have an account? <Link to="/register">Create account</Link>
+                New to SkillSync? <Link to="/register">Create an account</Link>
             </p>
-
-            <div className="campus-section">
-                <div className="section-divider">
-                    <span />
-                    CAMPUS STATUS
-                    <span />
-                </div>
-
-                <div className="campus-status">
-                    <span className="campus-icon">▣</span>
-                    <div>
-                        <strong>Directory Synchronization Active</strong>
-                        <small>All registered institutional emails accepted</small>
-                    </div>
-                </div>
-            </div>
         </AuthLayout>
     )
 }

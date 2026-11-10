@@ -8,7 +8,7 @@ import "./CreateProject.css";
 
 function CreateProject() {
     const navigate = useNavigate();
-    const { token, student } = useAuth();
+    const { token } = useAuth();
 
     const [skills, setSkills] = useState([]);
     const [title, setTitle] = useState("");
@@ -125,58 +125,8 @@ function CreateProject() {
 
     return (
         <div className="create-project-page">
-            <aside className="create-sidebar">
-                <div className="create-brand">
-                    <span className="create-brand-icon">S</span>
-                    SkillSync
-                </div>
 
-                <nav className="create-nav">
-                    <button onClick={() => navigate("/dashboard")}>
-                        ◈ Overview
-                    </button>
-
-                    <button onClick={() => navigate("/skills")}>
-                        ◇ My Skills
-                    </button>
-
-                    <button
-                        className="active"
-                        onClick={() => navigate("/projects")}
-                    >
-                        ▣ Projects
-                    </button>
-                </nav>
-
-                <div className="create-sidebar-bottom">
-                    <div className="create-student">
-                        <div className="create-avatar">
-                            {student?.name?.charAt(0) || "S"}
-                        </div>
-                        <div>
-                            <strong>{student?.name || "Student"}</strong>
-                            <small>
-                                {student?.department?.name || "Student"}
-                            </small>
-                        </div>
-                    </div>
-
-                    <button
-                        className="create-back-button"
-                        onClick={() => navigate("/projects")}
-                    >
-                        ← Back to Projects
-                    </button>
-                </div>
-            </aside>
-
-            <main className="create-main">
-                <header className="create-topbar">
-                    <span>Student Workspace / Projects / Create</span>
-                    <div className="create-top-avatar">
-                        {student?.name?.charAt(0) || "S"}
-                    </div>
-                </header>
+            <div className="create-main">
 
                 <section className="create-content">
                     <button
@@ -370,7 +320,7 @@ function CreateProject() {
                         </div>
                     </form>
                 </section>
-            </main>
+            </div>
         </div>
     );
 }

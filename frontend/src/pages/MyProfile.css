@@ -1,8 +1,8 @@
 .my-profile-page {
-    min-height: 100vh;
+    min-height: 0;
     padding: 40px 7%;
-    background: #f6f7fb;
-    color: #20243a;
+    background: transparent;
+    color: var(--ink);
 }
 
 .my-profile-header {
@@ -11,7 +11,7 @@
 
 .profile-eyebrow {
     margin: 0 0 9px;
-    color: #626bce;
+    color: var(--accent);
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -19,13 +19,13 @@
 
 .my-profile-header h1 {
     margin: 0;
-    color: #171c35;
+    color: var(--ink);
     font-size: 32px;
 }
 
 .my-profile-header>div>p:last-child {
     margin-top: 9px;
-    color: #7a8198;
+    color: var(--muted);
     font-size: 14px;
 }
 
@@ -33,9 +33,9 @@
 .profile-details-card,
 .profile-skills-card {
     padding: 25px;
-    border: 1px solid #e9eaf1;
+    border: 1px solid var(--line);
     border-radius: 15px;
-    background: #ffffff;
+    background: var(--surface);
 }
 
 .profile-identity-card {
@@ -52,21 +52,21 @@
     height: 76px;
     flex-shrink: 0;
     border-radius: 22px;
-    background: #e9eaff;
-    color: #5056b5;
+    background: var(--accent-soft);
+    color: var(--accent);
     font-size: 25px;
     font-weight: 700;
 }
 
 .profile-identity-info h2 {
     margin: 0;
-    color: #20243a;
+    color: var(--ink);
     font-size: 21px;
 }
 
 .profile-identity-info p {
     margin: 7px 0 10px;
-    color: #7a8198;
+    color: var(--muted);
     font-size: 14px;
 }
 
@@ -74,8 +74,8 @@
     display: inline-block;
     padding: 5px 10px;
     border-radius: 20px;
-    background: #eef0ff;
-    color: #5056b5;
+    background: var(--accent-soft);
+    color: var(--accent);
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.8px;
@@ -92,21 +92,21 @@
 .profile-section-heading h2,
 .profile-skills-content h2 {
     margin: 0;
-    color: #20243a;
+    color: var(--ink);
     font-size: 19px;
 }
 
 .profile-section-heading p {
     margin: 7px 0 0;
-    color: #858ba0;
+    color: var(--muted);
     font-size: 13px;
 }
 
 .profile-readonly-label {
     padding: 6px 11px;
     border-radius: 20px;
-    background: #f0f1f5;
-    color: #697087;
+    background: var(--line);
+    color: var(--muted);
     font-size: 11px;
     font-weight: 600;
 }
@@ -122,16 +122,16 @@
     flex-direction: column;
     gap: 8px;
     padding-bottom: 15px;
-    border-bottom: 1px solid #edf0f5;
+    border-bottom: 1px solid var(--line);
 }
 
 .profile-detail-item span {
-    color: #858ba0;
+    color: var(--muted);
     font-size: 12px;
 }
 
 .profile-detail-item strong {
-    color: #292e46;
+    color: var(--ink);
     font-size: 14px;
     font-weight: 600;
     overflow-wrap: anywhere;
@@ -151,8 +151,8 @@
     height: 48px;
     flex-shrink: 0;
     border-radius: 14px;
-    background: #eceeff;
-    color: #5056b5;
+    background: var(--accent-soft);
+    color: var(--accent);
     font-size: 23px;
 }
 
@@ -163,7 +163,7 @@
 .profile-skills-content p {
     max-width: 560px;
     margin: 7px 0 0;
-    color: #858ba0;
+    color: var(--muted);
     font-size: 13px;
     line-height: 1.6;
 }
@@ -171,7 +171,7 @@
 .profile-skills-link {
     padding: 11px 16px;
     border-radius: 9px;
-    background: #5056b5;
+    background: var(--accent);
     color: white;
     font-size: 13px;
     font-weight: 600;
@@ -181,7 +181,7 @@
 }
 
 .profile-skills-link:hover {
-    background: #3e449d;
+    background: var(--accent-strong);
 }
 
 @media (max-width: 650px) {
@@ -226,17 +226,17 @@
 .profile-form-group label {
     font-size: 14px;
     font-weight: 600;
-    color: #26324a;
+    color: var(--ink);
 }
 
 .profile-form-group input,
 .profile-form-group textarea {
     width: 100%;
     padding: 13px 15px;
-    border: 1px solid #dce1eb;
+    border: 1px solid var(--line);
     border-radius: 9px;
-    background: #ffffff;
-    color: #26324a;
+    background: var(--surface);
+    color: var(--ink);
     font-family: inherit;
     font-size: 14px;
     outline: none;
@@ -245,7 +245,7 @@
 
 .profile-form-group input:focus,
 .profile-form-group textarea:focus {
-    border-color: #6658d3;
+    border-color: var(--accent);
     box-shadow: 0 0 0 3px rgba(102, 88, 211, 0.1);
 }
 
@@ -256,12 +256,12 @@
 
 .profile-form-group input::placeholder,
 .profile-form-group textarea::placeholder {
-    color: #a0a7b5;
+    color: var(--muted);
 }
 
 .profile-form-group small {
     align-self: flex-end;
-    color: #8b93a3;
+    color: var(--muted);
     font-size: 12px;
 }
 
@@ -270,8 +270,8 @@
     padding: 12px 24px;
     border: none;
     border-radius: 8px;
-    background: #6658d3;
-    color: #ffffff;
+    background: var(--accent);
+    color: var(--surface);
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -279,7 +279,7 @@
 }
 
 .profile-save-button:hover {
-    background: #5143bd;
+    background: var(--accent-strong);
 }
 
 .profile-save-button:disabled {
@@ -288,13 +288,13 @@
 }
 
 .profile-form-error {
-    color: #dc3545;
+    color: var(--danger);
     font-size: 14px;
     margin: 0;
 }
 
 .profile-form-success {
-    color: #198754;
+    color: var(--ok);
     font-size: 14px;
     margin: 0;
 }

@@ -1,8 +1,8 @@
 .my-activity-page {
-    min-height: 100vh;
+    min-height: 0;
     padding: 38px 24px 60px;
-    background: #f6f7fb;
-    color: #20243a;
+    background: transparent;
+    color: var(--ink);
 }
 
 .my-activity-container {
@@ -19,7 +19,7 @@
 }
 
 .my-activity-eyebrow {
-    color: #7564df;
+    color: var(--accent);
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 1.5px;
@@ -32,7 +32,7 @@
 
 .my-activity-header p,
 .my-activity-section-heading p {
-    color: #85899a;
+    color: var(--muted);
     font-size: 13px;
     line-height: 1.6;
 }
@@ -41,7 +41,7 @@
     flex-shrink: 0;
     padding: 11px 17px;
     border-radius: 8px;
-    background: #7564df;
+    background: var(--accent);
     color: white;
     text-decoration: none;
     font-size: 13px;
@@ -72,8 +72,8 @@
     height: 34px;
     padding: 0 9px;
     border-radius: 50%;
-    background: #eeeaff;
-    color: #695bd0;
+    background: var(--accent-soft);
+    color: var(--accent);
     font-size: 13px;
     font-weight: 800;
 }
@@ -87,18 +87,18 @@
 
 .my-activity-filters button {
     padding: 8px 13px;
-    border: 1px solid #e5e6ee;
+    border: 1px solid var(--line);
     border-radius: 20px;
     background: white;
-    color: #777b8b;
+    color: var(--muted);
     font-size: 11px;
     font-weight: 700;
     cursor: pointer;
 }
 
 .my-activity-filters button.active {
-    border-color: #7564df;
-    background: #7564df;
+    border-color: var(--accent);
+    background: var(--accent);
     color: white;
 }
 
@@ -110,7 +110,7 @@
 
 .my-activity-card {
     padding: 20px;
-    border: 1px solid #e9eaf1;
+    border: 1px solid var(--line);
     border-radius: 12px;
     background: white;
 }
@@ -126,61 +126,61 @@
 .activity-status {
     padding: 6px 10px;
     border-radius: 20px;
-    background: #f0f1f5;
-    color: #666b7c;
+    background: var(--line);
+    color: var(--muted);
     font-size: 10px;
     font-weight: 800;
 }
 
 .status-pending {
-    background: #fff5df;
-    color: #a66a00;
+    background: var(--warn-soft);
+    color: var(--warn);
 }
 
 .status-accepted {
-    background: #e6f7ed;
-    color: #24834a;
+    background: var(--ok-soft);
+    color: var(--ok);
 }
 
 .status-rejected,
 .status-cancelled {
-    background: #fff0f0;
-    color: #c04444;
+    background: var(--danger-soft);
+    color: var(--danger);
 }
 
 .activity-date {
-    color: #999cab;
+    color: var(--muted);
     font-size: 11px;
 }
 
 .my-activity-card h3 {
     margin-bottom: 8px;
-    color: #20243a;
+    color: var(--ink);
     font-size: 16px;
 }
 
 .activity-description,
 .activity-message {
-    color: #85899a;
+    color: var(--muted);
     font-size: 12px;
     line-height: 1.6;
 }
 
 .activity-description strong {
-    color: #555a6b;
+    color: var(--muted);
 }
 
 .activity-message {
     margin-top: 9px;
     padding: 10px 12px;
-    border-left: 3px solid #c7bff5;
-    background: #f8f7ff;
+    border-left: 3px solid var(--accent-line);
+    background: var(--accent-soft);
 }
 
 .activity-project-link {
     display: inline-block;
     margin-top: 12px;
-    color: #695bd0;
+    color: var(--accent);
     font-size: 12px;
     font-weight: 700;
     text-decoration: none;
@@ -207,13 +207,13 @@
 }
 
 .activity-accept {
-    background: #7564df;
+    background: var(--accent);
     color: white;
 }
 
 .activity-reject {
-    background: #fff0f0;
-    color: #c04444;
+    background: var(--danger-soft);
+    color: var(--danger);
 }
 
 .activity-actions button:disabled {
@@ -223,10 +223,10 @@
 
 .my-activity-empty {
     padding: 25px;
-    border: 1px solid #e9eaf1;
+    border: 1px solid var(--line);
     border-radius: 12px;
     background: white;
-    color: #85899a;
+    color: var(--muted);
     text-align: center;
     font-size: 13px;
 }
@@ -239,15 +239,15 @@
     margin-bottom: 20px;
     padding: 13px 16px;
     border-radius: 9px;
-    background: #fff0f0;
-    color: #c04444;
+    background: var(--danger-soft);
+    color: var(--danger);
     font-size: 13px;
 }
 
 .my-activity-error button {
     border: 0;
     background: transparent;
-    color: #c04444;
+    color: var(--danger);
     font-weight: 800;
     cursor: pointer;
 }

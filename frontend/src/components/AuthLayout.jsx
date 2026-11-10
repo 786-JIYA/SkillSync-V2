@@ -1,121 +1,79 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { BrandMark } from "./Icon.jsx";
+import "./AuthLayout.css";
+
+const SAMPLE_MATCHES = [
+    { initial: "A", name: "Aarav", skills: "React, Figma", score: 94 },
+    { initial: "S", name: "Sana", skills: "Node.js, SQL", score: 88 },
+    { initial: "R", name: "Rohan", skills: "Node.js", score: 71 },
+];
 
 function AuthLayout({ activeTab, children }) {
     return (
-        <main className="auth-page">
-            <header className="site-header">
-                <div className="brand-area">
-                    <div className="brand-icon">✣</div>
+        <div className="auth-shell">
+            <section className="auth-aside">
+                <Link to="/" className="auth-brand">
+                    <BrandMark size={32} />
+                    <span>SkillSync</span>
+                </Link>
 
-                    <div className="brand-badges">
-                        <span className="version-badge">
-                            V2.4-ACADEMIC-AUTH
-                        </span>
-                        <span className="node-badge">
-                            <span className="status-dot" />
-                            Federated Node: Engg-Central
-                        </span>
-                    </div>
-
-                    <h1>SkillSync Terminal</h1>
-                    <p className="brand-description">
-                        Unified collegiate collaboration gateway. Connect student
-                        talent, match research cohorts, and authenticate academic
-                        credentials.
+                <div className="auth-pitch">
+                    <p className="auth-headline">
+                        Build your team around what people can actually do.
                     </p>
-                </div>
+                    <p className="auth-sub">
+                        Add your skills, find projects that need them, and invite the
+                        students who fill the gaps.
+                    </p>
 
-                <div className="sso-button">
-                    <span className="sso-icon">♧</span>
-                    <span>
-                        <small>Institutional SSO</small>
-                        <strong>Sign in with College ID</strong>
-                    </span>
-                    <span className="sso-arrow">→</span>
-                </div>
-            </header>
-
-            <section className="auth-content">
-                <div className="auth-card">
-                    <div className="auth-tabs">
-                        <div className="tab-group">
-                            <Link
-                                to="/login"
-                                className={`auth-tab ${activeTab === 'login' ? 'active' : ''}`}
-                            >
-                                <span>⇥</span> Sign In
-                            </Link>
-
-                            <Link
-                                to="/register"
-                                className={`auth-tab ${activeTab === 'register' ? 'active' : ''}`}
-                            >
-                                <span>♙</span> Create Account
-                            </Link>
+                    <div className="match-card" aria-hidden="true">
+                        <div className="match-card-head">
+                            <strong>Campus Navigator app</strong>
+                            <span>Needs React, Node.js, UI design</span>
                         </div>
-
-                        <span className="idp-badge">
-                            <span className="status-dot" />
-                            IDP Auth 2.4
-                        </span>
+                        {SAMPLE_MATCHES.map((m) => (
+                            <div className="match-row" key={m.name}>
+                                <span className="match-avatar">{m.initial}</span>
+                                <span className="match-who">
+                                    <strong>{m.name}</strong>
+                                    <small>{m.skills}</small>
+                                </span>
+                                <span className="match-score">{m.score}% match</span>
+                            </div>
+                        ))}
+                        <p className="match-note">Example of how candidates are ranked for a team.</p>
                     </div>
+                </div>
 
-                    <div className="auth-divider" />
+                <p className="auth-help">
+                    Need help? <a href="mailto:help@skillsync.edu">help@skillsync.edu</a>
+                </p>
+            </section>
+
+            <main className="auth-main">
+                <div className="auth-panel">
+                    <nav className="auth-tabs" aria-label="Account">
+                        <Link
+                            to="/login"
+                            className={activeTab === "login" ? "active" : ""}
+                            aria-current={activeTab === "login" ? "page" : undefined}
+                        >
+                            Sign in
+                        </Link>
+                        <Link
+                            to="/register"
+                            className={activeTab === "register" ? "active" : ""}
+                            aria-current={activeTab === "register" ? "page" : undefined}
+                        >
+                            Create account
+                        </Link>
+                    </nav>
 
                     {children}
                 </div>
-
-                <div className="collaboration-status">
-                    <div className="collaboration-left">
-                        <span className="status-dot" />
-                        <span>1,482 active collaboration slots open</span>
-                    </div>
-                    <span className="latency">LATENCY 14ms</span>
-                </div>
-
-                <div className="feature-grid">
-                    <div className="feature-card">
-                        <span className="feature-icon">♙</span>
-                        <div>
-                            <strong>End-to-End Auth</strong>
-                            <small>Zero-trust network</small>
-                        </div>
-                    </div>
-
-                    <div className="feature-card">
-                        <span className="feature-icon">♜</span>
-                        <div>
-                            <strong>Accredited Roster</strong>
-                            <small>Official campus sync</small>
-                        </div>
-                    </div>
-
-                    <div className="feature-card">
-                        <span className="feature-icon">♧</span>
-                        <div>
-                            <strong>Smart Teaming</strong>
-                            <small>Skill-based match %</small>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <footer className="site-footer">
-                <div className="gateway-info">
-                    <span>▣</span>
-                    IDP-GATEWAY: 0x4B41E1
-                    <span className="footer-separator">•</span>
-                    Collegiate Engineering Consortium
-                </div>
-
-                <nav className="footer-links">
-                    <a href="mailto:help@skillsync.edu">Help Desk</a>
-                    <a href="#data-protocol">Data Protocol</a>
-                    <a href="#api-specification">API Specification</a>
-                </nav>
-            </footer>
-        </main>
-    )
+            </main>
+        </div>
+    );
 }
 
-export default AuthLayout
+export default AuthLayout;

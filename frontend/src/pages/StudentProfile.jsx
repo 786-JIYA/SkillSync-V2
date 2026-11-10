@@ -51,17 +51,17 @@ function StudentProfile() {
 
     if (loading) {
         return (
-            <main className="student-profile-page">
+            <div className="student-profile-page">
                 <p className="student-profile-message">
                     Loading student profile...
                 </p>
-            </main>
+            </div>
         );
     }
 
     if (error || !profile) {
         return (
-            <main className="student-profile-page">
+            <div className="student-profile-page">
                 <div className="student-profile-message">
                     <h2>Profile unavailable</h2>
                     <p>{error || "Student profile not found."}</p>
@@ -69,7 +69,7 @@ function StudentProfile() {
                         Back to Directory
                     </button>
                 </div>
-            </main>
+            </div>
         );
     }
 
@@ -81,7 +81,7 @@ function StudentProfile() {
         .join("") || "S";
 
     return (
-        <main className="student-profile-page">
+        <div className="student-profile-page">
             <button
                 className="student-profile-back"
                 onClick={() => navigate("/students")}
@@ -230,7 +230,7 @@ function StudentProfile() {
                     <p>No team memberships yet.</p>
                 )}
             </section>
-        </main>
+        </div>
     );
 }
 

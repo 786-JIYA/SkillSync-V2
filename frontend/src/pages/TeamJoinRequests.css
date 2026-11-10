@@ -1,8 +1,8 @@
 .team-requests-page {
-    min-height: 100vh;
+    min-height: 0;
     padding: 38px 24px 60px;
-    background: #f6f7fb;
-    color: #20243a;
+    background: transparent;
+    color: var(--ink);
 }
 
 .team-requests-container {
@@ -14,12 +14,12 @@
     display: flex;
     gap: 10px;
     margin-bottom: 28px;
-    color: #85899a;
+    color: var(--muted);
     font-size: 13px;
 }
 
 .requests-breadcrumb a {
-    color: #695bd0;
+    color: var(--accent);
     text-decoration: none;
     font-weight: 600;
 }
@@ -33,7 +33,7 @@
 }
 
 .requests-eyebrow {
-    color: #7564df;
+    color: var(--accent);
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 1.5px;
@@ -45,14 +45,14 @@
 }
 
 .requests-header p {
-    color: #85899a;
+    color: var(--muted);
     font-size: 13px;
 }
 
 .requests-back-link {
     padding: 10px 15px;
     border-radius: 8px;
-    background: #7564df;
+    background: var(--accent);
     color: white;
     text-decoration: none;
     font-size: 12px;
@@ -68,18 +68,18 @@
 
 .requests-filters button {
     padding: 8px 14px;
-    border: 1px solid #e5e6ee;
+    border: 1px solid var(--line);
     border-radius: 20px;
     background: white;
-    color: #777b8b;
+    color: var(--muted);
     font-size: 11px;
     font-weight: 700;
     cursor: pointer;
 }
 
 .requests-filters button.active {
-    background: #7564df;
-    border-color: #7564df;
+    background: var(--accent);
+    border-color: var(--accent);
     color: white;
 }
 
@@ -91,7 +91,7 @@
 
 .request-card {
     padding: 21px;
-    border: 1px solid #e9eaf1;
+    border: 1px solid var(--line);
     border-radius: 12px;
     background: white;
 }
@@ -107,30 +107,30 @@
 .request-status {
     padding: 6px 10px;
     border-radius: 20px;
-    background: #f0f1f5;
-    color: #666b7c;
+    background: var(--line);
+    color: var(--muted);
     font-size: 10px;
     font-weight: 800;
 }
 
 .request-status-pending {
-    background: #fff5df;
-    color: #a66a00;
+    background: var(--warn-soft);
+    color: var(--warn);
 }
 
 .request-status-accepted {
-    background: #e6f7ed;
-    color: #24834a;
+    background: var(--ok-soft);
+    color: var(--ok);
 }
 
 .request-status-rejected,
 .request-status-cancelled {
-    background: #fff0f0;
-    color: #c04444;
+    background: var(--danger-soft);
+    color: var(--danger);
 }
 
 .request-date {
-    color: #999cab;
+    color: var(--muted);
     font-size: 11px;
 }
 
@@ -147,8 +147,8 @@
     place-items: center;
     flex-shrink: 0;
     border-radius: 50%;
-    background: #eeeaff;
-    color: #695bd0;
+    background: var(--accent-soft);
+    color: var(--accent);
     font-size: 17px;
     font-weight: 800;
 }
@@ -159,28 +159,28 @@
 }
 
 .request-student p {
-    color: #85899a;
+    color: var(--muted);
     font-size: 12px;
 }
 
 .request-message {
     margin-top: 17px;
     padding: 12px 14px;
-    border-left: 3px solid #c7bff5;
+    border-left: 3px solid var(--accent-line);
     border-radius: 5px;
-    background: #f8f7ff;
+    background: var(--accent-soft);
 }
 
 .request-message span {
     display: block;
     margin-bottom: 6px;
-    color: #695bd0;
+    color: var(--accent);
     font-size: 11px;
     font-weight: 800;
 }
 
 .request-message p {
-    color: #666b7c;
+    color: var(--muted);
     font-size: 12px;
     line-height: 1.6;
 }
@@ -202,13 +202,13 @@
 }
 
 .request-accept {
-    background: #7564df;
+    background: var(--accent);
     color: white;
 }
 
 .request-reject {
-    background: #fff0f0;
-    color: #c04444;
+    background: var(--danger-soft);
+    color: var(--danger);
 }
 
 .request-actions button:disabled {
@@ -218,10 +218,10 @@
 
 .requests-empty {
     padding: 28px;
-    border: 1px solid #e9eaf1;
+    border: 1px solid var(--line);
     border-radius: 12px;
     background: white;
-    color: #85899a;
+    color: var(--muted);
     text-align: center;
     font-size: 13px;
 }
@@ -234,15 +234,15 @@
     margin-bottom: 18px;
     padding: 13px 15px;
     border-radius: 8px;
-    background: #fff0f0;
-    color: #c04444;
+    background: var(--danger-soft);
+    color: var(--danger);
     font-size: 13px;
 }
 
 .requests-error button {
     border: 0;
     background: transparent;
-    color: #c04444;
+    color: var(--danger);
     font-weight: 800;
     cursor: pointer;
 }

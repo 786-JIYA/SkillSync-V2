@@ -1,4 +1,3 @@
-
 import {
   BrowserRouter,
   Navigate,
@@ -15,16 +14,16 @@ import SkillsPage from "./pages/SkillsPage.jsx";
 import BrowseProjects from "./pages/BrowseProjects.jsx";
 import CreateProject from "./pages/CreateProject.jsx";
 import ProjectDetails from "./pages/ProjectDetails.jsx";
-
 import TeamManagement from "./pages/TeamManagement.jsx";
 import MyInvitationsRequests from "./pages/MyInvitationsRequests.jsx";
 import TeamJoinRequests from "./pages/TeamJoinRequests.jsx";
 import TeamInvitations from "./pages/TeamInvitations.jsx";
 import MyProfile from "./pages/MyProfile.jsx";
-
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import StudentDirectory from "./pages/StudentDirectory.jsx";
 import StudentProfile from "./pages/StudentProfile.jsx";
+
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import AppLayout from "./components/AppLayout.jsx";
 
 import "./App.css";
 
@@ -32,151 +31,54 @@ function AppRoutes() {
   const { isAuthenticated, loading } = useAuth();
 
   if (loading) {
-    return <div className="app-loading">Loading SkillSync...</div>;
+    return (
+      <div className="app-loading" role="status">
+        <span className="app-spinner" aria-hidden="true" />
+        Loading SkillSync...
+      </div>
+    );
   }
 
   return (
     <Routes>
       <Route
         path="/"
-        element={
-          <Navigate
-            to={isAuthenticated ? "/dashboard" : "/login"}
-            replace
-          />
-        }
+        element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} replace />}
       />
 
       <Route
         path="/login"
-        element={
-          isAuthenticated
-            ? <Navigate to="/dashboard" replace />
-            : <Login />
-        }
+        element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <Login />}
       />
 
       <Route
         path="/register"
-        element={
-          isAuthenticated
-            ? <Navigate to="/dashboard" replace />
-            : <Register />
-        }
+        element={isAuthenticated ? <Navigate to="/dashboard" replace /> : <Register />}
       />
 
+      {/* Every signed-in page shares one sidebar + topbar */}
       <Route
-        path="/dashboard"
         element={
           <ProtectedRoute>
-            <Dashboard />
+            <AppLayout />
           </ProtectedRoute>
         }
-      />
+      >
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/profile" element={<MyProfile />} />
+        <Route path="/students" element={<StudentDirectory />} />
+        <Route path="/students/:studentId" element={<StudentProfile />} />
+        <Route path="/skills" element={<SkillsPage />} />
+        <Route path="/projects" element={<BrowseProjects />} />
+        <Route path="/projects/create" element={<CreateProject />} />
+        <Route path="/projects/:projectId" element={<ProjectDetails />} />
+        <Route path="/my-activity" element={<MyInvitationsRequests />} />
+        <Route path="/teams/:teamId" element={<TeamManagement />} />
+        <Route path="/teams/:teamId/requests" element={<TeamJoinRequests />} />
+        <Route path="/teams/:teamId/invitations" element={<TeamInvitations />} />
+      </Route>
 
-      <Route
-        path="/profile"
-        element={
-          <ProtectedRoute>
-            <MyProfile />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/students"
-        element={
-          <ProtectedRoute>
-            <StudentDirectory />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/students/:studentId"
-        element={
-          <ProtectedRoute>
-            <StudentProfile />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/skills"
-        element={
-          <ProtectedRoute>
-            <SkillsPage />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/projects"
-        element={
-          <ProtectedRoute>
-            <BrowseProjects />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/projects/create"
-        element={
-          <ProtectedRoute>
-            <CreateProject />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/projects/:projectId"
-        element={
-          <ProtectedRoute>
-            <ProjectDetails />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/my-activity"
-        element={
-          <ProtectedRoute>
-            <MyInvitationsRequests />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/teams/:teamId"
-        element={
-          <ProtectedRoute>
-            <TeamManagement />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/teams/:teamId/requests"
-        element={
-          <ProtectedRoute>
-            <TeamJoinRequests />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="/teams/:teamId/invitations"
-        element={
-          <ProtectedRoute>
-            <TeamInvitations />
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
-        path="*"
-        element={<Navigate to="/" replace />}
-      />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
