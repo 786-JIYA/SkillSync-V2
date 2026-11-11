@@ -20,11 +20,30 @@ function CreateProject() {
     const [submitting, setSubmitting] = useState(false);
     const [error, setError] = useState("");
 
+
     useEffect(() => {
         async function loadSkills() {
             try {
-                const result = await skillService.getAllSkills(token);
-                setSkills(result.data?.skills || []);
+                const firstResult = await skillService.getAllSkills(token, {
+                    page: 1,
+                    limit: 100,
+                });
+
+                const firstSkills = firstResult.data?.skills || [];
+                const totalPages = firstResult.data?.pagination?.totalPages || 1;
+
+                let allSkills = [...firstSkills];
+
+                for (let page = 2; page <= totalPages; page++) {
+                    const result = await skillService.getAllSkills(token, {
+                        page,
+                        limit: 100,
+                    });
+
+                    allSkills = [...allSkills, ...(result.data?.skills || [])];
+                }
+
+                setSkills(allSkills);
             } catch (err) {
                 setError(err.message || "Unable to load available skills.");
             } finally {
@@ -34,6 +53,7 @@ function CreateProject() {
 
         loadSkills();
     }, [token]);
+
 
     function handleSkillToggle(skillId) {
         setSelectedSkills((current) => {
