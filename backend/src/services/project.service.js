@@ -120,6 +120,13 @@ const createProject = async (studentId, projectData) => {
             },
         });
 
+        // Create a workspace for the team.
+        await tx.projectWorkspace.create({
+            data: {
+                teamId: team.id,
+            },
+        });
+
         // Return the complete project details.
         return tx.project.findUnique({
             where: {

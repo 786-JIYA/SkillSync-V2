@@ -31,6 +31,7 @@ function getMeta(path) {
     if (path.startsWith("/students/")) return ["Student directory", "Student profile"];
     if (path === "/students") return ["Workspace", "Student directory"];
     if (path.endsWith("/requests")) return ["Team", "Join requests"];
+    if (path.endsWith("/workspace")) return ["Team", "Workspace"];
     if (path.endsWith("/invitations")) return ["Team", "Invitations"];
     if (path.startsWith("/teams/")) return ["Projects", "Team workspace"];
     if (path === "/my-activity") return ["Me", "My activity"];

@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { projectService } from "../services/projectService";
 import { joinRequestService } from "../services/joinRequestService";
@@ -251,14 +251,33 @@ function ProjectDetails() {
                             </p>
                         </div>
 
-                        {isCreator && project.status === "OPEN" && (
-                            <button
-                                className="edit-project-button"
-                                onClick={() => navigate("/projects")}
-                            >
-                                Manage Project
-                            </button>
-                        )}
+                        <div className="details-hero-actions">
+                            {teamId && (isCreator || currentStudentIsMember) && (
+                                <>
+                                    <Link
+                                        to={`/teams/${teamId}/workspace`}
+                                        className="btn btn-primary"
+                                    >
+                                        Open workspace
+                                    </Link>
+                                    <Link
+                                        to={`/teams/${teamId}`}
+                                        className="btn btn-outline"
+                                    >
+                                        Manage team
+                                    </Link>
+                                </>
+                            )}
+
+                            {isCreator && project.status === "OPEN" && (
+                                <button
+                                    className="edit-project-button"
+                                    onClick={() => navigate("/projects")}
+                                >
+                                    Manage Project
+                                </button>
+                            )}
+                        </div>
                     </div>
 
                     <div className="details-layout">

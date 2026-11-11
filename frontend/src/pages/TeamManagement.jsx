@@ -92,9 +92,20 @@ function TeamManagement() {
                     </p>
                 </div>
 
-                <span className="team-status">
-                    {team.project?.status || "ACTIVE"}
-                </span>
+                <div className="team-header-side">
+                    <span className="team-status">
+                        {team.project?.status || "ACTIVE"}
+                    </span>
+
+                    {isMember && (
+                        <Link
+                            to={`/teams/${teamId}/workspace`}
+                            className="btn btn-primary"
+                        >
+                            Open workspace
+                        </Link>
+                    )}
+                </div>
             </header>
 
             {error && <div className="team-error">{error}</div>}

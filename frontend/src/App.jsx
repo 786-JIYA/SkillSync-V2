@@ -21,6 +21,7 @@ import TeamInvitations from "./pages/TeamInvitations.jsx";
 import MyProfile from "./pages/MyProfile.jsx";
 import StudentDirectory from "./pages/StudentDirectory.jsx";
 import StudentProfile from "./pages/StudentProfile.jsx";
+import Workspace from "./pages/Workspace.jsx";
 
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import AppLayout from "./components/AppLayout.jsx";
@@ -74,6 +75,7 @@ function AppRoutes() {
         <Route path="/projects/:projectId" element={<ProjectDetails />} />
         <Route path="/my-activity" element={<MyInvitationsRequests />} />
         <Route path="/teams/:teamId" element={<TeamManagement />} />
+        <Route path="/teams/:teamId/workspace" element={<Workspace />} />
         <Route path="/teams/:teamId/requests" element={<TeamJoinRequests />} />
         <Route path="/teams/:teamId/invitations" element={<TeamInvitations />} />
       </Route>

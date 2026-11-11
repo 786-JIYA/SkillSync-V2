@@ -6,12 +6,34 @@ const authenticateStudent = require("../middlewares/auth.middleware");
 const teamController = require("../controllers/team.controller");
 const invitationController = require("../controllers/invitation.controller");
 const joinRequestController = require("../controllers/join-request.controller");
+const workspaceController = require("../controllers/workspace.controller");
 
 // Get team details
 router.get(
     "/:teamId",
     authenticateStudent,
     teamController.getTeamById
+);
+
+// Get team workspace
+router.get(
+    "/:teamId/workspace",
+    authenticateStudent,
+    workspaceController.getWorkspaceByTeamId
+);
+
+// Get workspace messages
+router.get(
+    "/:teamId/workspace/messages",
+    authenticateStudent,
+    workspaceController.getWorkspaceMessages
+);
+
+// Send workspace message
+router.post(
+    "/:teamId/workspace/messages",
+    authenticateStudent,
+    workspaceController.sendWorkspaceMessage
 );
 
 // Leave a team
@@ -47,5 +69,6 @@ router.get(
     authenticateStudent,
     joinRequestController.getTeamJoinRequests
 );
+
 
 module.exports = router;
