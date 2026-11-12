@@ -31,34 +31,49 @@ The platform aims to make student collaboration more organized, accessible, and 
 - Secure password hashing.
 - JWT-based authentication.
 - Protected routes and authenticated API requests.
+  <img width="1911" height="906" alt="Screenshot (310)" src="https://github.com/user-attachments/assets/420443aa-d9c6-4e4a-84fc-da5a3794254a" />
+
 
 ### 👤 Student Profiles
 - View and manage student profile information.
 - Display academic and personal details.
 - Showcase technical skills.
 - Explore other students on the platform.
+- <img width="1920" height="911" alt="Screenshot (311)" src="https://github.com/user-attachments/assets/8f8cf5ca-4a46-413b-be5f-594d86de6e60" />
+
 
 ### 💡 Skills Management
 - Add and manage technical skills.
 - Showcase individual capabilities.
 - Discover students with relevant skills.
+  <img width="1520" height="730" alt="image" src="https://github.com/user-attachments/assets/b1e9a75b-4392-485a-bf19-6eed29125525" />
+
 
 ### 📁 Project Management
 - Create and manage projects.
 - Explore available projects.
 - Connect projects with team collaboration.
+  <img width="1518" height="726" alt="image" src="https://github.com/user-attachments/assets/bff590cc-8d99-42dd-a0db-46cd0f1fba3f" />
+  <img width="1920" height="908" alt="Screenshot (307)" src="https://github.com/user-attachments/assets/1e90f31a-78be-44e8-a017-c64a7f3ead29" />
+
+
 
 ### 👥 Team Collaboration
 - Create and manage project teams.
 - Send and manage team invitations.
 - Handle join requests.
 - Access team-related project information.
+  <img width="1912" height="903" alt="Screenshot (301)" src="https://github.com/user-attachments/assets/c0577a42-49bf-4224-8fb6-6090a99b5319" />
+<img width="1920" height="908" alt="Screenshot (302)" src="https://github.com/user-attachments/assets/b24fe634-3e6d-4657-8484-0f524db6f8b4" />
+
 
 ### 💬 Project Workspace
 - Dedicated workspace for project teams.
 - Real-time group messaging using Socket.IO.
 - Retrieve previous workspace messages.
 - Collaborate and communicate with teammates.
+  <img width="1215" height="797" alt="Screenshot (308)" src="https://github.com/user-attachments/assets/01bf28ff-90db-47b8-a381-3b86a0ddcb09" />
+
 
 ---
 
