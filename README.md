@@ -14,16 +14,6 @@
 
 ---
 
-## 🚀 Live Project
-
-**Frontend:** https://skill-sync-v2-six.vercel.app/
-
-**Login:** https://skill-sync-v2-six.vercel.app/login
-
-**Backend API:** https://skillsync-v2-0z63.onrender.com/api/v1
-
----
-
 ## 📌 About SkillSync
 
 SkillSync V2 is a full-stack student collaboration platform designed to help students connect with one another based on their skills and interests.
